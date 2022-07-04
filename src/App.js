@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import AlertMessage from './components/AlertMessage';
 import Nav from './components/Nav';
-import CreatePost from './views/CreatePost';
+import CreatePost from './views/FindTitle';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';

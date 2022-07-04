@@ -9,8 +9,9 @@ export default class Home extends Component {
         }
     }
 
+    
     componentDidMount(){
-        fetch('https://kekambas-blog.herokuapp.com/blog/posts')
+        fetch('')
             .then(res => res.json())
             .then(data => this.setState({posts:data}))
     }
@@ -29,13 +30,11 @@ export default class Home extends Component {
     render() {
         return (
             <>
-                <h1 className='text-center'>Kekambas Blog</h1>
+                <h1 className='text-center mt-5'>Saved Titles</h1>
                 <hr></hr>
                 <div className='offset-8 col-4'>
                     <select onChange={(e) => this.sortPosts(e.target.value)} className='form-select'>
-                        <option>Sort Posts</option>
-                        <option value='byDateAsc'>By Date Ascending</option>
-                        <option value='byDateDesc'>By Date Descending</option>
+                        <option>Sort Saved Titles</option>
                         <option value='byTitleAsc'>By Title Ascending</option>
                         <option value='byTitleDesc'>By Title Descending</option>
                     </select>

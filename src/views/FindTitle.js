@@ -10,7 +10,7 @@ export default function CreatePost(props) {
 
     useEffect(() => {
         if (!loggedIn){
-            flashMessage('You must be logged in to create a post', 'danger');
+            flashMessage('You must be logged in to make changes', 'danger');
             navigate('/login')
         }
     }, [loggedIn, flashMessage, navigate])
@@ -35,7 +35,7 @@ export default function CreatePost(props) {
                 if (data.error){
                     flashMessage(data.error, 'danger')
                 } else {
-                    flashMessage(`The post ${data.title} has been created`, 'success')
+                    flashMessage(`${data.title} has been created`, 'success')
                     navigate('/')
                 }
             })
@@ -43,16 +43,16 @@ export default function CreatePost(props) {
 
     return (
         <>
-            <h4 className='text-center'>Create Your Own Post</h4>
+            <h4 className='text-center'>Lets Get Started</h4>
             <form onSubmit={handleSubmit}>
                 <div className='from-group'>
-                    <label htmlFor='title'>Title</label>
-                    <input type='text' name='title' className='form-control' placeholder='Enter Title of Post' />
+                    <label htmlFor='service'>Pick a Streaming Service to View Titles</label>
+                    <input type='text' name='title' className='form-control' placeholder='Choose from Netflix, Prime, Disney, Hbo, Hulu, Peacock, Paramount, Starz, Showtime, or Apple' />
 
-                    <label htmlFor='content'>Content</label>
-                    <input type='text' name='content' className='form-control' placeholder='Enter Body of Post' />
+                    <label htmlFor='type'>Movie or Series</label>
+                    <input type='text' name='content' className='form-control' placeholder='Do you want to look for Movie a or Series?' />
 
-                    <input type='submit' className='btn btn-primary w-100 mt-3' value='Create Post' />
+                    <input type='submit' className='btn btn-light bg-warning w-100 mt-3' value='Search Available Options' />
                 </div>
             </form>
         </>

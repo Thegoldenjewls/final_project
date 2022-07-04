@@ -46,10 +46,10 @@ export default function Register(props) {
 
     return (
         <>
-            <h4 className='text-center'>Register Here</h4>
+            <h4 className='text-center mt-5 '>Create New User </h4>
             <form onSubmit={handleFormSubmit}>
-                <div className='from-group'>
-                    <label htmlFor='username'>Username</label>
+                <div className='from-group '>
+                    <label htmlFor='username '>Username</label>
                     <input type='text' name='username' className='form-control' placeholder='Enter Username' />
 
                     <label htmlFor='email'>Email</label>
@@ -61,7 +61,7 @@ export default function Register(props) {
                     <label htmlFor='confirmPass'>Confirm Password</label>
                     <input type='password' name='confirmPass' className='form-control' placeholder='Enter Confirm Password' />
 
-                    <input type='submit' className='btn btn-primary w-100 mt-3' value='Register' />
+                    <input type='submit' className='btn btn-light bg-warning w-100 mt-3' value='Sign Up' />
                 </div>
             </form>
         </>

@@ -44,7 +44,7 @@ export default class Login extends Component {
     render() {
         return ( this.state.redirect ? <Navigate to='/' /> : (
                 <>
-                    <h4 className='text-center'>Login Here</h4>
+                    <h4 className='text-center mt-5'>Login Here</h4>
                     <form onSubmit={this.handleFormSubmit}>
                         <div className='from-group'>
                             <label htmlFor='username'>Username</label>
@@ -53,7 +53,7 @@ export default class Login extends Component {
                             <label htmlFor='password'>Password</label>
                             <input type='password' name='password' className='form-control' placeholder='Enter Password' />
 
-                            <input type='submit' className='btn btn-primary w-100 mt-3' value='Login' />
+                            <input type='submit' className='btn btn-light bg-warning w-100 mt-3' value='Login' />
                         </div>
                     </form>
                 </>
