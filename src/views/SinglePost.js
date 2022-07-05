@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import PostCard from '../components/PostCard';
+import PostCard from '../components/MovieCard';
 
 export default function SinglePost(props) {
     const { postId } = useParams();

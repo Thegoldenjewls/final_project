@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PostCard from '../components/PostCard';
+import PostCard from '../components/MovieCard';
 
 export default class Home extends Component {
     constructor(props){
@@ -18,8 +18,6 @@ export default class Home extends Component {
 
     sortPosts = (method) => {
         const sortingMethods = {
-            byDateAsc: (a, b) => new Date(a.date_created) - new Date(b.date_created),
-            byDateDesc: (a, b) => new Date(b.date_created) - new Date(a.date_created),
             byTitleAsc: (a, b) => a.title > b.title ? 1 : -1,
             byTitleDesc: (a, b) => a.title > b.title ? -1 : 1,
         }

@@ -35,7 +35,7 @@ export default function Register(props) {
                     if (data.error) {
                         props.flashMessage(data.error, 'danger')
                     } else {
-                        props.flashMessage(`${data.username} has been registered`, 'success')
+                        props.flashMessage(`${data.username} has been created`, 'success')
                         navigate('/')
                     }
                 });

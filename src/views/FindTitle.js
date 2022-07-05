@@ -43,7 +43,7 @@ export default function CreatePost(props) {
 
     return (
         <>
-            <h4 className='text-center'>Lets Get Started</h4>
+            <h4 className='text-center mt-5'>Lets Get Started</h4>
             <form onSubmit={handleSubmit}>
                 <div className='from-group'>
                     <label htmlFor='service'>Pick a Streaming Service to View Titles</label>
