@@ -6,7 +6,7 @@ import CreatePost from './views/FindTitle';
 import Home from './views/Home';
 import Login from './views/Login';
 import Register from './views/Register';
-import SinglePost from './views/SinglePost';
+import SinglePost from './views/Addbookmark';
 
 export default function App() {
     const [message, setMessage] = useState(null);

@@ -10,7 +10,7 @@ export default function CreatePost(props) {
 
     useEffect(() => {
         if (!loggedIn){
-            flashMessage('You must be logged in to make changes', 'danger');
+            flashMessage('You must be logged in', 'danger');
             navigate('/login')
         }
     }, [loggedIn, flashMessage, navigate])
@@ -26,7 +26,7 @@ export default function CreatePost(props) {
         let content = e.target.content.value;
         let data = JSON.stringify({title,content})
 
-        fetch('https://kekambas-blog.herokuapp.com/blog/posts', {
+        fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/blog/posts', {
             method: 'POST',
             headers: myHeaders,
             body: data
@@ -47,10 +47,30 @@ export default function CreatePost(props) {
             <form onSubmit={handleSubmit}>
                 <div className='from-group'>
                     <label htmlFor='service'>Pick a Streaming Service to View Titles</label>
-                    <input type='text' name='title' className='form-control' placeholder='Choose from Netflix, Prime, Disney, Hbo, Hulu, Peacock, Paramount, Starz, Showtime, or Apple' />
-
-                    <label htmlFor='type'>Movie or Series</label>
-                    <input type='text' name='content' className='form-control' placeholder='Do you want to look for Movie a or Series?' />
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <button class="btn btn-outline-secondary" type="button">Netflix</button>
+                        <button class="btn btn-outline-secondary" type="button">Prime</button>
+                        <button class="btn btn-outline-secondary" type="button">Disney</button>
+                        <button class="btn btn-outline-secondary" type="button">Hbo</button>
+                        <button class="btn btn-outline-secondary" type="button">Hulu</button>
+                        <button class="btn btn-outline-secondary" type="button">Peacock</button>
+                        <button class="btn btn-outline-secondary" type="button">Paramount</button>
+                        <button class="btn btn-outline-secondary" type="button">Starz</button>
+                        <button class="btn btn-outline-secondary" type="button">Showtime</button>
+                        <button class="btn btn-outline-secondary" type="button">Apple TV</button>
+                    </div>
+                </div>
+                <div>
+                    <label htmlFor='type'>Pick a Type to Search</label>
+                    <div class="input-group mb-3 text-center">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="button">Movie</button>
+                            <button class="btn btn-outline-secondary" type="button">Series</button>
+                        </div>         
+                    </div>
+                </div>    
+                       
 
                     <input type='submit' className='btn btn-light bg-warning w-100 mt-3' value='Search Available Options' />
                 </div>

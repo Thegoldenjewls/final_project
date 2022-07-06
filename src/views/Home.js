@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PostCard from '../components/MovieCard';
+import PostCard from '../components/TitleCard';
 
 export default class Home extends Component {
     constructor(props){
@@ -10,11 +10,17 @@ export default class Home extends Component {
     }
 
     
-    componentDidMount(){
-        fetch('')
-            .then(res => res.json())
-            .then(data => this.setState({posts:data}))
-    }
+    // componentDidMount(){
+    //     fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en',{
+    //         method:"get",
+    //         headers:{
+    //         'X-RapidAPI-Key': '90e9ec67d0msh2ff1393dd7fd379p1a3d08jsne0257d03f53d',
+    //         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(data => this.setState({posts:data.results}))
+    // }
 
     sortPosts = (method) => {
         const sortingMethods = {

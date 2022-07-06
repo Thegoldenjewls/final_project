@@ -26,7 +26,7 @@ export default function Register(props) {
                 password: password
             })
 
-            fetch('https://kekambas-blog.herokuapp.com/auth/users', {
+            fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/auth/users', {
                 method: "POST",
                 headers: myHeaders,
                 body: data

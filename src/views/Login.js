@@ -20,7 +20,7 @@ export default class Login extends Component {
         let myHeaders = new Headers();
         myHeaders.append('Authorization', `Basic ${encodedUserPass}`);
 
-        fetch('https://kekambas-blog.herokuapp.com/auth/token', {
+        fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/auth/token', {
             method: "POST",
             headers: myHeaders
         }).then(res => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import PostCard from '../components/MovieCard';
+import PostCard from '../components/TitleCard';
 
 export default function SinglePost(props) {
     const { postId } = useParams();
@@ -28,7 +28,7 @@ export default function SinglePost(props) {
             content: e.target.content.value
         })
 
-        fetch(`https://kekambas-blog.herokuapp.com/blog/posts/${postId}`,{
+        fetch(`https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/blog/posts/${postId}`,{
             method: 'PUT',
             headers: myHeaders,
             body: data
