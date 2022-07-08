@@ -5,20 +5,19 @@ export default function Register(props) {
 
     let navigate = useNavigate();
 
-    const handleFormSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(e);
+        // console.log(e);
 
-        // Confirm that passwords are equal
+        // Check that the passwords match
         let password = e.target.password.value;
         let confirmPass = e.target.confirmPass.value;
-        console.log(password, confirmPass);
-        if (password !== confirmPass){
-            props.flashMessage('Your passwords do not match', 'danger');
+        if(password !== confirmPass){
+            props.flashMessage('Passwords do not match', 'warning')
         } else {
-            // Set up post request to /auth/users
+            // Set up the request to Flask API
             let myHeaders = new Headers();
-            myHeaders.append('Content-Type', 'application/json');
+            myHeaders.append('Content-Type', 'application/json')
 
             let data = JSON.stringify({
                 username: e.target.username.value,
@@ -26,44 +25,41 @@ export default function Register(props) {
                 password: password
             })
 
-            fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/auth/users', {
-                method: "POST",
+            fetch('http://localhost:5000/api/users', {
+                method: 'POST',
                 headers: myHeaders,
                 body: data
             }).then(res => res.json())
                 .then(data => {
-                    if (data.error) {
-                        props.flashMessage(data.error, 'danger')
-                    } else {
-                        props.flashMessage(`${data.username} has been created`, 'success')
-                        navigate('/')
-                    }
-                });
-
-
+                    console.log(data)
+                    props.flashMessage('You have successfully registered', 'success')
+                    navigate('/')
+                })
         }
+
     }
 
     return (
         <>
-            <h4 className='text-center mt-5 '>Create New User </h4>
-            <form onSubmit={handleFormSubmit}>
-                <div className='from-group '>
-                    <label htmlFor='username '>Username</label>
-                    <input type='text' name='username' className='form-control' placeholder='Enter Username' />
+        <h4 className='text-center'>Register</h4>
+        <form onSubmit={handleSubmit}>
+            <div className='form-group'>
+                <label htmlFor='email'>Email</label>
+                <input type='text' className='form-control' placeholder='Enter Email' name='email' />
 
-                    <label htmlFor='email'>Email</label>
-                    <input type='text' name='email' className='form-control' placeholder='Enter Email' />
+                <label htmlFor='username'>Username</label>
+                <input type='text' className='form-control' placeholder='Enter Username' name='username' />
 
-                    <label htmlFor='password'>Password</label>
-                    <input type='password' name='password' className='form-control' placeholder='Enter Password' />
+                <label htmlFor='password'>Password</label>
+                <input type='password' className='form-control' placeholder='Enter Password' name='password' />
 
-                    <label htmlFor='confirmPass'>Confirm Password</label>
-                    <input type='password' name='confirmPass' className='form-control' placeholder='Enter Confirm Password' />
+                <label htmlFor='confirmPass'>Confirm Password</label>
+                <input type='password' className='form-control' placeholder='Enter Password Again' name='confirmPass' />
 
-                    <input type='submit' className='btn btn-light bg-warning w-100 mt-3' value='Sign Up' />
-                </div>
-            </form>
+                <input type='submit' className='btn btn-warning w-100 mt-3' value='Register' />
+
+            </div>
+        </form>
         </>
     )
 }

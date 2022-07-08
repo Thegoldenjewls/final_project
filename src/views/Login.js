@@ -1,63 +1,47 @@
-import React, { Component } from 'react';
-import { Navigate } from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default class Login extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            redirect: null
-        }
-    }
+export default function Login(props) {
 
-    handleFormSubmit = (e) => {
+    let navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(e);
 
         let username = e.target.username.value;
         let password = e.target.password.value;
-        let encodedUserPass = btoa(`${username}:${password}`);
 
         let myHeaders = new Headers();
-        myHeaders.append('Authorization', `Basic ${encodedUserPass}`);
+        myHeaders.append('Authorization', 'Basic ' + btoa(`${username}:${password}`))
 
-        fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/auth/token', {
-            method: "POST",
-            headers: myHeaders
-        }).then(res => {
-            if (res.ok){
-                return res.json();
-            } else {
-                this.props.flashMessage('Incorrect username/password', 'danger');
-            }
-        }).then(data => {
-            if (data){
-                localStorage.setItem('token', data.token);
-                this.props.flashMessage('You have successfully logged in', 'success');
-                this.props.logUserIn();
-                this.setState({redirect: true});
-            }
-        })
+        let response = await fetch('http://localhost:5000/api/token', { headers: myHeaders })
+        let data = await response.json()
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('expiration', data.expiration);
 
+        props.login();
 
+        props.flashMessage('You have successfully logged in', 'success')
+
+        navigate('/')
     }
 
-    render() {
-        return ( this.state.redirect ? <Navigate to='/' /> : (
-                <>
-                    <h4 className='text-center mt-5'>Login Here</h4>
-                    <form onSubmit={this.handleFormSubmit}>
-                        <div className='from-group'>
-                            <label htmlFor='username'>Username</label>
-                            <input type='text' name='username' className='form-control' placeholder='Enter Username' />
+    return (
+        <>
+        <h4 className='text-center'>Login</h4>
+        <form onSubmit={handleSubmit}>
+            <div className='form-group'>
 
-                            <label htmlFor='password'>Password</label>
-                            <input type='password' name='password' className='form-control' placeholder='Enter Password' />
+                <label htmlFor='username'>Username</label>
+                <input type='text' className='form-control' placeholder='Enter Username' name='username' />
 
-                            <input type='submit' className='btn btn-light bg-warning w-100 mt-3' value='Login' />
-                        </div>
-                    </form>
-                </>
-            )
-        )
-    }
+                <label htmlFor='password'>Password</label>
+                <input type='password' className='form-control' placeholder='Enter Password' name='password' />
+
+                <input type='submit' className='btn btn-warning w-100 mt-3' value='Login' />
+
+            </div>
+        </form>
+        </>
+    )
 }

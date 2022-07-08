@@ -10,17 +10,17 @@ export default class Home extends Component {
     }
 
     
-    // componentDidMount(){
-    //     fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en',{
-    //         method:"get",
-    //         headers:{
-    //         'X-RapidAPI-Key': '90e9ec67d0msh2ff1393dd7fd379p1a3d08jsne0257d03f53d',
-    //         'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
-    //         }
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => this.setState({posts:data.results}))
-    // }
+    componentDidMount(){
+        fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en',{
+            method:"get",
+            headers:{
+            'X-RapidAPI-Key': '90e9ec67d0msh2ff1393dd7fd379p1a3d08jsne0257d03f53d',
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com'
+            }
+        })
+            .then(res => res.json())
+            .then(data => this.setState({posts:data.results}))
+    }
 
     sortPosts = (method) => {
         const sortingMethods = {
@@ -34,11 +34,11 @@ export default class Home extends Component {
     render() {
         return (
             <>
-                <h1 className='text-center mt-5'>Saved Titles</h1>
+                <h1 className='text-center mt-5'>Available Titles</h1>
                 <hr></hr>
                 <div className='offset-8 col-4'>
                     <select onChange={(e) => this.sortPosts(e.target.value)} className='form-select'>
-                        <option>Sort Saved Titles</option>
+                        <option>Sort Titles</option>
                         <option value='byTitleAsc'>By Title Ascending</option>
                         <option value='byTitleDesc'>By Title Descending</option>
                     </select>

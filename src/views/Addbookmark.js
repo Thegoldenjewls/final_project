@@ -10,7 +10,7 @@ export default function SinglePost(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://kekambas-blog.herokuapp.com/blog/posts/${postId}`)
+        fetch(`https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/blog/posts/${postId}`)
             .then(res => res.json())
             .then(data => setPost(data))
     }, [postId])
@@ -48,7 +48,7 @@ export default function SinglePost(props) {
         let myHeaders = new Headers();
         myHeaders.append('Authorization', `Bearer ${localStorage.getItem('token')}`)
 
-        fetch(`https://kekambas-blog.herokuapp.com/blog/posts/${postId}`, {
+        fetch(`https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/blog/posts/${postId}`, {
             method: 'DELETE',
             headers: myHeaders
         }).then(res => {

@@ -26,7 +26,7 @@ export default function CreatePost(props) {
         let content = e.target.content.value;
         let data = JSON.stringify({title,content})
 
-        fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=netflix&type=movie&genre=18&page=1&output_language=en&language=en/blog/posts', {
+        fetch('http://localhost:5000/api/posts', {
             method: 'POST',
             headers: myHeaders,
             body: data
